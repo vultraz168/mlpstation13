@@ -5,5 +5,5 @@
 # Ranks can be anything defined in admin_ranks.txt           ~Carn   #
 ######################################################################
 
-alpha_passive = Game Master
-boxless1066 = Game Master
+alpha_passive - Host
+boxless1066 - Game Master
