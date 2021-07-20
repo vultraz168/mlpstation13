@@ -8,7 +8,7 @@ var/global/global_playlists = list()
 /proc/load_juke_playlists()
 	if(!config.media_base_url)
 		return
-	for(var/playlist_id in list("lilslugger", "bar", "jazzswing", "bomberman", "depresso", "echoes", "electronica", "emagged", "endgame", "filk", "funk", "folk", "idm", "malfdelta", "medbay", "metal", "muzakjazz", "nukesquad", "rap", "rock", "shoegaze", "security", "shuttle", "thunderdome", "upbeathypedancejam", "SCOTLANDFOREVER", "halloween", "christmas"))
+	for(var/playlist_id in list("pony", "emagged"))
 		var/url="[config.media_base_url]/index.php?playlist=[playlist_id]"
 		//testing("Updating playlist from [url]...")
 
@@ -805,23 +805,10 @@ var/global/list/loopModeNames=list(
 	department = "Civilian"
 	req_access = list(access_bar)
 
-	playlist_id="bar"
+	playlist_id="pony"
 	// Must be defined on your server.
 	playlists=list(
-		"lilslugger" = "Battle of Lil Slugger",
-		"bar"  = "Bar Mix",
-		"jazzswing" = "Jazz & Swing",
-		"depresso" ="Depresso",
-		"electronica" = "Electronica",
-		"funk" = "Funk",
-		"folk" = "Folk",
-		"medbay" = "Medbay",
-		"metal" = "Heavy Metal",
-		"rap" = "Rap",
-		"rock" = "Rock",
-		"shoegaze" = "Shoegaze",
-		"security" = "Security",
-		"upbeathypedancejam" = "Dance"
+		"pony" = "The Pony Mix"
 	)
 
 
@@ -836,23 +823,7 @@ var/global/list/loopModeNames=list(
 
 	// Must be defined on your server.
 	playlists=list(
-		"bar"  = "Bar Mix",
-		"jazzswing" = "Jazz & Swing",
-		"depresso" ="Depresso",
-		"electronica" = "Electronica",
-		"filk" = "Filk",
-		"funk" = "Funk",
-		"folk" = "Folk",
-		"idm" = "90's IDM",
-		"medbay" = "Medbay",
-		"metal" = "Heavy Metal",
-		"muzakjazz" = "Muzak",
-		"rap" = "Rap",
-		"rock" = "Rock",
-		"shoegaze" = "Shoegaze",
-		"security" = "Security",
-		"upbeathypedancejam" = "Dance",
-		"thunderdome" = "Thunderdome"
+		"pony" = "The Pony Mix"
 	)
 
 // So I don't have to do all this shit manually every time someone sacrifices pun-pun.
@@ -869,35 +840,8 @@ var/global/list/loopModeNames=list(
 	playlist_id="bar"
 	// Must be defined on your server.
 	playlists=list(
-		"lilslugger" = "Battle of Lil' Slugger",
-		"bar"  = "Bar Mix",
-		"jazzswing" = "Jazz & Swing",
-		"depresso" ="Depresso",
-		"electronica" = "Electronica",
-		"filk" = "Filk",
-		"funk" = "Funk",
-		"folk" = "Folk",
-		"idm" = "90's IDM",
-		"medbay" = "Medbay",
-		"metal" = "Heavy Metal",
-		"muzakjazz" = "Muzak",
-		"rap" = "Rap",
-		"rock" = "Rock",
-		"shoegaze" = "Shoegaze",
-		"shuttle" = "Shuttle",
-		"security" = "Security",
-		"upbeathypedancejam" = "Dance",
-		"thunderdome" = "Thunderdome",
+		"pony" = "The Pony Mix",
 		"emagged" ="Syndicate Mix",
-		"shuttle"= "Shuttle",
-		"halloween" = "Halloween",
-		"christmas" = "Christmas Jingles",
-		"endgame" = "Apocalypse",
-		"nukesquad" = "Syndicate Assault",
-		"malfdelta"= "Silicon Assault",
-		"bomberman" = "Bomberman",
-		"SCOTLANDFOREVER"= "Highlander",
-		"echoes" = "Echoes"
 	)
 
 /obj/machinery/media/jukebox/superjuke/attackby(obj/item/W, mob/user)
@@ -908,12 +852,12 @@ var/global/list/loopModeNames=list(
 	..()
 
 /obj/machinery/media/jukebox/superjuke/shuttle
-	playlist_id="shuttle"
+	playlist_id="pony"
 	id_tag="Shuttle" // For autolink
 
 
 /obj/machinery/media/jukebox/superjuke/thematic
-	playlist_id="endgame"
+	playlist_id="pony"
 
 /obj/machinery/media/jukebox/superjuke/thematic/update_music()
 	if(current_song && playing)
@@ -948,7 +892,7 @@ var/global/list/loopModeNames=list(
 
 	var/datum/browser/popup = null
 	req_access = list()
-	playlist_id="endgame"
+	playlist_id="pony"
 
 /obj/machinery/media/jukebox/superjuke/adminbus/attack_hand(var/mob/user)
 	var/t = "<div class=\"navbar\">"
@@ -1007,10 +951,10 @@ obj/machinery/media/jukebox/holyjuke
 
 	change_cost = 0
 
-	playlist_id="holy"
+	playlist_id="pony"
 	// Must be defined on your server.
 	playlists=list(
-		"holy" = "Pastor's Paradise"
+		"pony" = "The Pony Mix"
 	)
 
 /obj/machinery/media/jukebox/holyjuke/attackby(obj/item/W, mob/user)
@@ -1056,130 +1000,11 @@ obj/machinery/media/jukebox/holyjuke
 	overlays += label
 
 //Premades
-/obj/item/weapon/vinyl/bar
-	name = "nanovinyl - bar"
-	unformatted = "bar"
-	formatted = "Bar"
-	mask = "#800000"//maroon
-/obj/item/weapon/vinyl/bomberman
-	name = "nanovinyl - bomberman"
-	unformatted = "bomberman"
-	formatted = "Bomberman"
-	mask = "#00FFFF"//cyan
-/obj/item/weapon/vinyl/depresso
-	name = "nanovinyl - depresso"
-	unformatted = "depresso"
-	formatted = "Depresso"
-	mask = "#000000"//black
-/obj/item/weapon/vinyl/echoes
-	name = "nanovinyl - echoes"
-	unformatted = "echoes"
-	formatted = "Echoes"
-/obj/item/weapon/vinyl/electronica
-	name = "nanovinyl - electronic"
-	unformatted = "electronica"
-	formatted = "Electronic"
-	mask = "#FFFFFF"//white
 /obj/item/weapon/vinyl/emagged
 	name = "nanovinyl - syndicate"
 	unformatted = "emagged"
 	formatted = "Syndicate Mix"
-/obj/item/weapon/vinyl/endgame
-	name = "nanovinyl - apocalypse"
-	unformatted = "endgame"
-	formatted = "Apocalypse"
-/obj/item/weapon/vinyl/filk
-	name = "nanovinyl - filk"
-	unformatted = "filk"
-	formatted = "Filk"
-/obj/item/weapon/vinyl/funk
-	name = "nanovinyl - funk"
-	unformatted = "funk"
-	formatted = "Funk"
-/obj/item/weapon/vinyl/folk
-	name = "nanovinyl - folk"
-	unformatted = "folk"
-	formatted = "Folk"
-/obj/item/weapon/vinyl/idm
-	name = "nanovinyl - 90's IDM"
-	unformatted = "idm"
-	formatted = "90's IDM"
-/obj/item/weapon/vinyl/jazz
-	name = "nanovinyl - jazz & swing"
-	unformatted = "jazzswing"
-	formatted = "Jazz & Swing"
-/obj/item/weapon/vinyl/malf
-	name = "nanovinyl - silicon assault"
-	unformatted = "malfdelta"
-	formatted = "Silicon Assault"
-/obj/item/weapon/vinyl/medbay
-	name = "nanovinyl - medbay"
-	unformatted = "medbay"
-	formatted = "Medbay"
-/obj/item/weapon/vinyl/metal
-	name = "nanovinyl - heavy metal"
-	unformatted = "metal"
-	formatted = "Heavy Metal"
-/obj/item/weapon/vinyl/muzakjazz
-	name = "nanovinyl - jazzy muzak"
-	unformatted = "muzakjazz"
-	formatted = "Muzak"
-/obj/item/weapon/vinyl/syndie_assault
-	name = "nanovinyl - syndicate assault"
-	unformatted = "nukesquad"
-	formatted = "Syndicate Assault"
-/obj/item/weapon/vinyl/rap
-	name = "nanovinyl - rap"
-	unformatted = "rap"
-	formatted = "Rap"
-/obj/item/weapon/vinyl/rock
-	name = "nanovinyl - rock"
-	unformatted = "rock"
-	formatted = "Rock"
-/obj/item/weapon/vinyl/shoegaze
-	name = "nanovinyl - shoegaze"
-	desc = "More reverb than you can handle."
-	unformatted = "shoegaze"
-	formatted = "Shoegaze"
-	mask = "#FF00FF"//magenta
-/obj/item/weapon/vinyl/security
-	name = "nanovinyl - security"
-	unformatted = "security"
-	formatted = "Security"
-/obj/item/weapon/vinyl/shuttle
-	name = "nanovinyl - shuttle"
-	unformatted = "shuttle"
-	formatted = "Shuttle"
-	mask = "#000080"//navy
-/obj/item/weapon/vinyl/thunderdome
-	name = "nanovinyl - thunderdome"
-	unformatted = "thunderdome"
-	formatted =	"Thunderdome"
-/obj/item/weapon/vinyl/upbeat_dance
-	name = "nanovinyl - dance"
-	unformatted = "upbeathypedancejam"
-	formatted = "Dance"
-/obj/item/weapon/vinyl/scotland
-	name = "nanovinyl - highlander"
-	desc = "Oh no."
-	unformatted = "SCOTLANDFOREVER"
-	formatted = "Highlander"
-	mask = "#0000FF"//blue
-/obj/item/weapon/vinyl/halloween
-	name = "nanovinyl - halloween"
-	unformatted = "halloween"
-	formatted = "Halloween"
-/obj/item/weapon/vinyl/slugger
-	name = "nanovynil - slugger"
-	desc = "A go-to for bars all over the sector. Every time you walk in one, you can almost bet it's playing."
-	unformatted = "lilslugger"
-	formatted = "Battle of Lil Slugger"
-obj/item/weapon/vinyl/christmas
-	name = "nanovynil - christmas"
-	unformatted = "christmas"
-	formatted = "Christmas Jingles"
-/obj/item/weapon/vinyl/holy
-	name = "nanovinyl - holy"
-	unformatted = "holy"
-	formatted = "Holy"
-	mask = "#8000FF"//purple
+/obj/item/weapon/vinyl/pony
+	name = "nanovinyl - pony"
+	unformatted = "theponymix"
+	formatted = "The Pony Mix"
