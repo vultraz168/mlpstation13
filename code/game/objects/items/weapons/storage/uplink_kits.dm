@@ -172,7 +172,6 @@
 			new /obj/item/clothing/shoes/jackboots/highlander(src)
 			new /obj/item/weapon/claymore(src)
 			new /obj/item/weapon/glue(src)
-			new /obj/item/weapon/vinyl/scotland(src)
 			new /obj/item/weapon/spellbook/oneuse/mutate/highlander(src)
 
 	tag = tagname

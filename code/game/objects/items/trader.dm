@@ -208,7 +208,7 @@ var/global/list/shoal_stuff = list(
 	/obj/item/weapon/boxofsnow,/obj/item/weapon/boxofsnow,/obj/item/weapon/boxofsnow,
 	//1 of a kind
 	/obj/item/weapon/reagent_containers/food/snacks/borer_egg,
-	/obj/item/weapon/vinyl/echoes,
+	/obj/item/weapon/vinyl/pony,
 	/obj/item/fish_eggs/seadevil,
 	/obj/structure/bed/therapy,
 	/obj/item/weapon/grenade/station/discount,
