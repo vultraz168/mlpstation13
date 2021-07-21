@@ -30,7 +30,7 @@
 	/datum/map_element/dungeon/holodeck
 	)
 
-	event_blacklist = list(/datum/event/spacevine, /datum/event/biomass)
+	event_blacklist = list(/datum/event/spacevine, /datum/event/biomass, /datum/event/powercreeper)
 
 	holomap_offset_x = list(0,0,0,86,4,0,0,)
 	holomap_offset_y = list(0,0,0,94,10,0,0,)
