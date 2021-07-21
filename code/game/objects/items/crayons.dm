@@ -28,7 +28,20 @@ var/global/list/all_graffitis = list(
 	"Syndicate logo 1"="syndicate1",
 	"Syndicate logo 2"="syndicate2",
 	"Don't believe these lies"="lie",
-	"Chaos Undivided"="chaos"
+	"Chaos Undivided"="chaos",
+	"Twilight Cutie Mark"="twilight_cm",
+	"Starlight Cutie Mark"="starlight_cm",
+	"Rarity Cutie Mark"="rarity_cm",
+	"Fluttershy Cutie Mark"="fluttershy_cm",
+	"Rainbow Dash Cutie Mark"="rainbow_cm",
+	"Pinkie Cutie Mark"="pinkie_cm",
+	"Applejack Cutie Mark"="applejack_cm",
+	"Luna Cutie Mark"="luna_cm",
+	"Celestia Cutie Mark"="celestia_cm",
+	"Trixie Cutie Mark"="trixie_cm",
+	"Minuette"="minuette",
+	"IWTCIRD"="iwtcird",
+	"Amethyst"="amethyst",
 )
 
 /obj/item/toy/crayon/red
