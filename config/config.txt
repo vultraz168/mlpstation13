@@ -16,7 +16,7 @@ ADMIN_LEGACY_SYSTEM
 BAN_LEGACY_SYSTEM
 
 ## Add a # here if you wish to use the setup where jobs have more access. This is intended for servers with low populations - where there are not enough players to fill all roles, so players need to do more than just one job. Also for servers where they don't want people to hide in their own departments.
-JOBS_HAVE_MINIMAL_ACCESS
+#JOBS_HAVE_MINIMAL_ACCESS
 
 ## Unhash this entry to have certain jobs require your account to be at least a certain number of days old to select. You can configure the exact age requirement for different jobs by editing
 ## the minimal_player_age variable in the files in folder /code/game/jobs/job/.. for the job you want to edit. Set minimal_player_age to 0 to disable age requirement for that job.
@@ -171,7 +171,7 @@ GUEST_BAN
 # USEWHITELIST
 
 ## set a server location for world reboot. Don't include the byond://, just give the address and port.
-# SERVER ss13.example.com:2506
+# SERVER 3.238.18.42:49933
 
 ## forum address
 # FORUMURL http://example.com
@@ -273,7 +273,7 @@ RESPAWN_AS_MOMMI
 ## Media URL.
 ## The base URL of your media library.  DO NOT ADD A SLASH AT THE END!
 ## NOTE that this must be publically-accessible.
-#MEDIA_BASE_URL http://yoursite.tld/media
+MEDIA_BASE_URL http://3.238.18.42:80
 
 
 ##Dectalk SERVER
