@@ -815,7 +815,7 @@ var/global/list/loopModeNames=list(
 // Relaxing elevator music~
 /obj/machinery/media/jukebox/dj
 
-	playlist_id="muzakjazz"
+	playlist_id="pony"
 	autoplay = 1
 	change_cost = 0
 
