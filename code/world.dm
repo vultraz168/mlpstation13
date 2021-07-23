@@ -276,6 +276,18 @@ var/auxtools_path = world.GetConfig("env", "AUXTOOLS_DEBUG_DLL")
 
 	Master.Shutdown()
 	paperwork_stop()
+	var/round_end_sound = pick(\
+		'sound/round/apcdestroyed.ogg',
+		'sound/round/bangindonk.ogg',
+		'sound/round/bully.ogg',
+		'sound/round/its_only_game.ogg',
+		'sound/round/leavingmlp.ogg',
+		'sound/round/pinkie_donk.ogg',
+		'sound/round/raritydisappointed.ogg',
+		'sound/round/scrunglartiy.ogg',
+		'sound/round/yeehaw.ogg'\
+		)
+	src << sound(round_end_sound)
 
 	stop_all_media()
 

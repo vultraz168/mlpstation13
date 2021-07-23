@@ -561,7 +561,7 @@ Round Duration: [round(hours)]h [round(mins)]m<br>"}
 	else
 		client.prefs.copy_to(new_character)
 
-	src << sound(null, repeat = 0, wait = 0, volume = 85, channel = CHANNEL_LOBBY)// MAD JAMS cant last forever yo
+	src << sound('sound/round/enteringmlp.ogg', repeat = 0, wait = 0, volume = 85, channel = CHANNEL_LOBBY) // fuck you vg I do what I want
 
 
 	if (mind)
