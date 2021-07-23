@@ -362,3 +362,6 @@ BSQL_THREAD_LIMIT 50
 
 ## Uncomment to enable verbose BSQL communication logs
 #BSQL_DEBUG
+
+## The address of the Continuous Delivery Daemare
+CDD_ADDRESS http://127.0.0.1:6158

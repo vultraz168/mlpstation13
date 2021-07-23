@@ -54,6 +54,7 @@ var/global/datum/controller/vote/vote = new()
 
 	// Jesus fuck some shitcode is breaking because it's sleeping and the SS doesn't like it.
 	var/lock = FALSE
+	var/is_updating = FALSE
 
 /datum/controller/vote/New()
 	. = ..()
@@ -197,7 +198,6 @@ var/global/datum/controller/vote/vote = new()
 				feedback_set("map vote winner", feedbackanswer)
 			else
 				feedback_set("map vote tie", "[feedbackanswer] chosen: [.]")
-
 		text += "<b>[weighted ? "Random Weighted " : ""]Vote Result: [.] won with [choices[.]] vote\s[weighted? " and a [round(100*choices[.]/qualified_votes)]% chance of winning" : null].</b>"
 		for(var/choice in choices)
 			if(. == choice)
@@ -236,7 +236,16 @@ var/global/datum/controller/vote/vote = new()
 					watchdog.chosen_map = ismapvote[.]
 					log_game("Players voted and chose.... [watchdog.chosen_map]!")
 					//testing("Vote picked [chosen_map]")
-
+			if("update")
+				if(. == "Restart Server")
+					is_updating = TRUE
+					if(blackbox)
+						blackbox.save_all_data_to_sql()
+					CallHook("Reboot",list())
+					sleep(50)
+					log_game("Rebooting for update")
+					world.pre_shutdown()
+					shutdown()
 
 	if(restart)
 		to_chat(world, "World restarting due to vote...")
@@ -282,7 +291,6 @@ var/global/datum/controller/vote/vote = new()
 	if(currently_voting)
 		message_admins("<span class='info'>[initiator_key] attempted to begin a vote, however a vote is already in progress.</span>")
 		return
-	currently_voting = TRUE
 	if(!mode)
 		if(started_time != null && !check_rights(R_ADMIN))
 			var/next_allowed_time = (started_time + config.vote_delay)
@@ -294,6 +302,9 @@ var/global/datum/controller/vote/vote = new()
 			if("restart")
 				choices.Add("Restart Round","Continue Playing")
 				question = "Restart the round?"
+			if("update")
+				choices.Add("Restart Server", "Continue Playing (Delay by [SS_CDD_VOTE_CD_STRING])")
+				question = "Restart the server for updates?"
 			if("gamemode")
 				if(ticker.current_state >= 2)
 					return 0
@@ -324,6 +335,7 @@ var/global/datum/controller/vote/vote = new()
 				ismapvote = maps
 			else
 				return 0
+		currently_voting = TRUE
 		mode = vote_type
 		initiator = initiator_key
 		started_time = world.time
@@ -352,7 +364,11 @@ var/global/datum/controller/vote/vote = new()
 			if(istype(usr) && usr.client)
 				interact(usr.client)
 
-		to_chat(world, "<font color='purple'><b>[text]</b><br> <a href='?src=\ref[vote]'>Click here</a> or type 'vote' to place your votes.<br>You have [ismapvote && ismapvote.len ? "60" : config.vote_period/10] seconds to vote.</font>")
+		var/vote_period = config.vote_period/10
+		if (ismapvote && ismapvote.len)
+			vote_period = 60
+
+		to_chat(world, "<font color='purple'><b>[text]</b><br> <a href='?src=\ref[vote]'>Click here</a> or type 'vote' to place your votes.<br>You have [vote_period] seconds to vote.</font>")
 		switch(vote_type)
 			if("crew_transfer")
 				world << sound('sound/voice/Serithi/Shuttlehere.ogg')
@@ -366,7 +382,7 @@ var/global/datum/controller/vote/vote = new()
 			going = 0
 			to_chat(world, "<span class='red'><b>Round start has been delayed.</b></span>")
 
-		time_remaining = (ismapvote && ismapvote.len ? 60 : round(config.vote_period/10))
+		time_remaining = (vote_period)
 		return 1
 	return 0
 
@@ -480,6 +496,8 @@ var/global/datum/controller/vote/vote = new()
 		if("custom")
 			if(usr.client.holder)
 				initiate_vote("custom",usr.key)
+		if(null)
+			// do nothing
 		else
 			submit_vote(usr, round(text2num(href_list["vote"])))
 	usr.vote()
