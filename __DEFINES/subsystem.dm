@@ -67,6 +67,7 @@
 #define SS_WAIT_TICKER              2 SECONDS
 #define SS_WAIT_ENGINES				30 SECONDS
 
+#define SS_DISPLAY_CDD            -110
 #define SS_DISPLAY_GARBAGE        -100
 #define SS_DISPLAY_AIR            -90
 #define SS_DISPLAY_LIGHTING       -80
@@ -93,3 +94,6 @@
 #define SS_BLOOD                  "blood"
 #define SS_GIBS                   "gibs"
 #define SS_TRACKS                 "tracks"
+
+#define SS_CDD_VOTE_CD               9000
+#define SS_CDD_VOTE_CD_STRING        "15 min"

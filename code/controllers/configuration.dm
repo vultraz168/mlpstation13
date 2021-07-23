@@ -203,6 +203,9 @@
 	// Dynamic Mode
 	var/high_population_override = 1//If 1, what rulesets can or cannot be called depend on the threat level only
 
+	// Continuous Delivery Daemare
+	var/cdd_address = "127.0.0.1:6158"
+
 /datum/configuration/New()
 	. = ..()
 	var/list/L = subtypesof(/datum/gamemode)-/datum/gamemode/cult
@@ -622,9 +625,10 @@
 					discord_password = value
 				if("weighted_votes")
 					weighted_votes = TRUE
-
 				if ("kill_phrase")
 					kill_phrase = value
+				if ("cdd_address")
+					cdd_address = value
 
 				else
 					diary << "Unknown setting in configuration: '[name]'"
