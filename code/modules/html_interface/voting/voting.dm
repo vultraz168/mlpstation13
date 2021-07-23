@@ -378,6 +378,8 @@ var/global/datum/controller/vote/vote = new()
 				world << sound('sound/voice/Serithi/weneedvote.ogg')
 			if("map")
 				world << sound('sound/misc/rockthevote.ogg')
+			if("update")
+				world << sound('sound/misc/rockthevote.ogg')
 		if(mode == "gamemode" && going)
 			going = 0
 			to_chat(world, "<span class='red'><b>Round start has been delayed.</b></span>")
