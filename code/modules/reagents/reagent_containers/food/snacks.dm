@@ -631,11 +631,11 @@
 	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/donut
-	name = "donut"
-	desc = "Goes great with Robust Coffee."
-	icon_state = "donut1"
-	food_flags = FOOD_SWEET | FOOD_ANIMAL //eggs are used
-	var/soggy = 0
+       name = "donut"
+       desc = "Goes great with Robust Coffee."
+       icon_state = "donut1"
+       food_flags = FOOD_SWEET | FOOD_ANIMAL //eggs are used
+       var/soggy = 0
 
 //Called in drinks.dm attackby
 /obj/item/weapon/reagent_containers/food/snacks/donut/proc/dip(var/obj/item/weapon/reagent_containers/R, mob/user)
@@ -700,6 +700,72 @@
 		name = "frosted chaos donut"
 		reagents.add_reagent(SPRINKLES, 2)
 
+/obj/item/weapon/reagent_containers/food/snacks/donut/appleponut
+	name = "apple ponut"
+	desc = "An apple-flavored donut."
+	icon = 'icons/obj/food2.dmi'
+	icon_state = "ajponut"
+/obj/item/weapon/reagent_containers/food/snacks/donut/appleponut/New()
+	..()
+	reagents.add_reagent(NUTRIMENT, 3)
+	reagents.add_reagent(APPLEJUICE, 3)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/butterponut
+	name = "butter ponut"
+	desc = "A buttered donut."
+	icon = 'icons/obj/food2.dmi'
+	icon_state = "fsponut"
+/obj/item/weapon/reagent_containers/food/snacks/donut/butterponut/New()
+	..()
+	reagents.add_reagent(NUTRIMENT, 3)
+	reagents.add_reagent(LIQUIDBUTTER, 3)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/sugarponut
+	name = "sugar ponut"
+	desc = "A sugary donut. Exercise portion control."
+	icon = 'icons/obj/food2.dmi'
+	icon_state = "rrponut"
+/obj/item/weapon/reagent_containers/food/snacks/donut/sugarponut/New()
+	..()
+	reagents.add_reagent(NUTRIMENT, 3)
+	reagents.add_reagent(SUGAR, 3)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/pinkponut
+	name = "pink ponut"
+	desc = "A pink donut."
+	icon = 'icons/obj/food2.dmi'
+	icon_state = "ppponut"
+/obj/item/weapon/reagent_containers/food/snacks/donut/pinkponut/New()
+	..()
+	reagents.add_reagent(NUTRIMENT, 3)
+	reagents.add_reagent(CHERRYJELLY, 3)
+	reagents.add_reagent(SPRINKLES, 1)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/blueponut
+	name = "blue ponut"
+	desc = "A blue donut made with blue tomatoes. Lube included."
+	icon = 'icons/obj/food2.dmi'
+	icon_state = "rdponut"
+/obj/item/weapon/reagent_containers/food/snacks/donut/blueponut/New()
+	..()
+	reagents.add_reagent(NUTRIMENT, 3)
+	reagents.add_reagent(LUBE, 3)
+	bitesize = 5
+
+/obj/item/weapon/reagent_containers/food/snacks/donut/grapeponut
+	name = "grape ponut"
+	desc = "A grape donut. The color of royalty."
+	icon = 'icons/obj/food2.dmi'
+	icon_state = "tsponut"
+/obj/item/weapon/reagent_containers/food/snacks/donut/grapeponut/New()
+	..()
+	reagents.add_reagent(NUTRIMENT, 3)
+	reagents.add_reagent(GRAPEJUICE, 3)
+	bitesize = 5
 
 /obj/item/weapon/reagent_containers/food/snacks/donut/jelly
 	name = "jelly donut"
@@ -2297,6 +2363,16 @@
 	..()
 	reagents.add_reagent(NUTRIMENT, 5)
 	bitesize = 3
+
+/obj/item/weapon/reagent_containers/food/snacks/carb_overload
+	name = "pasta and potato sandwich on sourdough"
+	desc = "A sandwich for athletes, and no one else."
+	icon = 'icons/obj/food2.dmi'
+	icon_state = "carb_overload"
+/obj/item/weapon/reagent_containers/food/snacks/carb_overload/New()
+	..()
+	reagents.add_reagent(NUTRIMENT, 10)
+	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/jellyburger
 	name = "Jelly Burger"
