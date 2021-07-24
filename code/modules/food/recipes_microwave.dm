@@ -15,6 +15,34 @@
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/egg)
 	result = /obj/item/weapon/reagent_containers/food/snacks/donut/normal
 
+/datum/recipe/appleponut
+	reagents = list(FLOUR = 5, SUGAR = 5)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/grown/apple)
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/appleponut
+
+/datum/recipe/butterponut
+	reagents = list(FLOUR = 5, SUGAR = 5)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/butter)
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/butterponut
+
+/datum/recipe/sugarponut
+	reagents = list(FLOUR = 5, SUGAR = 10)
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/sugarponut
+
+/datum/recipe/pinkponut
+	reagents = list(FLOUR = 5, SUGAR = 5, CHERRYJELLY = 5)
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/pinkponut
+
+/datum/recipe/blueponut
+	reagents = list(FLOUR = 5, SUGAR = 5)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/grown/bluetomato)
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/blueponut
+
+/datum/recipe/grapeponut
+	reagents = list(FLOUR = 5, SUGAR = 5)
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/grown/grapes)
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/grapeponut
+
 /datum/recipe/jellydonut
 	reagents = list(BERRYJUICE = 5, FLOUR = 5)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/egg)
@@ -1315,6 +1343,17 @@
 		/obj/item/weapon/reagent_containers/food/snacks/breadslice,
 		)
 	result = /obj/item/weapon/reagent_containers/food/snacks/avocadotoast
+
+/datum/recipe/carb_overload
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/breadslice,
+		/obj/item/weapon/reagent_containers/food/snacks/breadslice,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/potato,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/potato,
+		/obj/item/weapon/reagent_containers/food/snacks/spaghetti,
+		/obj/item/weapon/reagent_containers/food/snacks/spaghetti,
+		)
+	result = /obj/item/weapon/reagent_containers/food/snacks/carb_overload
 
 /datum/recipe/pbj
 	items = list(
