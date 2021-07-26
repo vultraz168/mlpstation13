@@ -38,7 +38,7 @@
 	item_state = "gy_suit"
 	_color = "grey"
 	clothing_flags = ONESIZEFITSALL
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/under/color/orange
 	name = "orange jumpsuit"

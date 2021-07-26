@@ -7,7 +7,12 @@
 			gender = MALE
 		else
 			gender = FEMALE
-	s_tone = random_skin_tone(species)
+	if(species == "Pony")
+		r_skin = rand(0,255)
+		g_skin = rand(0,255)
+		b_skin = rand(0,255)
+	else
+		s_tone = random_skin_tone(species)
 	h_style = random_hair_style(gender, species)
 	f_style = random_facial_hair_style(gender, species)
 	randomize_hair_color("hair")
@@ -21,6 +26,15 @@
 
 
 /datum/preferences/proc/randomize_hair_color(var/target = "hair")
+	if(species == "Pony")
+		if(target == "hair")
+			r_hair = rand(0,255)
+			g_hair = rand(0,255)
+			b_hair = rand(0,255)
+			r_facial = r_hair
+			g_facial = g_hair
+			b_facial = b_hair
+		return
 	if(prob (75) && target == "facial") // Chance to inherit hair color
 		r_facial = r_hair
 		g_facial = g_hair
@@ -81,6 +95,12 @@
 			b_facial = blue
 
 /datum/preferences/proc/randomize_eyes_color()
+	if(species == "Pony")
+		r_eyes = rand(0,255)
+		g_eyes = rand(0,255)
+		b_eyes = rand(0,255)
+		return
+
 	var/red
 	var/green
 	var/blue
@@ -237,9 +257,14 @@
 			preview_icon.Blend(rgb(-s_tone,  -s_tone,  -s_tone), ICON_SUBTRACT)
 	if(current_species && (current_species.anatomy_flags & RGBSKINTONE))
 		preview_icon.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+	if(current_species && (current_species.anatomy_flags & MULTICOLOR))
+		preview_icon.Blend(rgb(r_skin, g_skin, b_skin), ICON_ADD)
 
 	var/icon/eyes_s = new/icon("icon" = 'icons/mob/hair_styles.dmi', "icon_state" = current_species ? current_species.eyes : "eyes_s")
 	eyes_s.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
+	if(current_species && current_species.name == "Pony") // Adds eye overlay so pony preview doesn't look spooky
+		var/icon/eyes_o = new/icon("icon" = 'icons/mob/hair_styles.dmi', "icon_state" = "pony_eyes_o")
+		eyes_s.Blend(eyes_o, ICON_OVERLAY)
 
 	var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
 	if(hair_style)
@@ -255,6 +280,13 @@
 		var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 		facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
 		eyes_s.Blend(facial_s, ICON_OVERLAY)
+
+	var/datum/sprite_accessory/tail_style = tail_styles_list[t_style]
+	if(current_species && current_species.name == "Pony") // Add the tail to the preview if it's a pony
+		if(tail_style)
+			var/icon/tail_s = new/icon("icon" = tail_style.icon, "icon_state" = "[tail_style.icon_state]_s")
+			tail_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+			eyes_s.Blend(tail_s, ICON_UNDERLAY)
 
 	var/icon/clothes_s = null
 

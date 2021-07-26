@@ -192,6 +192,9 @@ var/global/list/damage_icon_parts = list()
 //BASE MOB SPRITE
 /mob/living/carbon/human/proc/update_body(var/update_icons=1)
 
+	if(species && species.name == "Pony") // I'm so, so sorry, but there wasn't a cleaner way.
+		species.update_body(src, update_icons)
+		return
 
 	var/husk_color_mod = rgb(96,88,80)
 	var/hulk_color_mod = rgb(48,224,40)
@@ -315,7 +318,6 @@ var/global/list/damage_icon_parts = list()
 
 	//tail
 	update_tail_showing(0)
-
 
 //HAIR OVERLAY
 /mob/living/carbon/human/update_hair(var/update_icons=1)
@@ -1307,7 +1309,18 @@ var/global/list/damage_icon_parts = list()
 	//overlays_standing[TAIL_LAYER] = null
 	overlays -= obj_overlays[TAIL_LAYER]
 	if(species && species.tail && species.anatomy_flags & HAS_TAIL)
-		if(!wear_suit || !is_slot_hidden(wear_suit.body_parts_covered, HIDEJUMPSUIT, 0, wear_suit.body_parts_visible_override))
+		if(species.name == "Pony" && my_appearance) // Pones get their own override for now.
+			var/obj/abstract/Overlays/O = obj_overlays[TAIL_LAYER]
+			var/datum/sprite_accessory/tail/tail_style = tail_styles_list[my_appearance.t_style]
+			if(tail_style)
+				O.icon = tail_style.icon
+				O.icon_state = "[tail_style.icon_state]_s"
+				O.icon += rgb(my_appearance.r_hair, my_appearance.g_hair, my_appearance.b_hair)
+			else
+				O.icon = 'icons/mob/tail_styles.dmi'
+				O.icon_state = "none_s"
+			obj_to_plane_overlay(O,TAIL_LAYER)
+		else if(!wear_suit || !is_slot_hidden(wear_suit.body_parts_covered, HIDEJUMPSUIT, 0, wear_suit.body_parts_visible_override))
 			var/obj/abstract/Overlays/O = obj_overlays[TAIL_LAYER]
 			O.icon = 'icons/effects/species.dmi'
 			O.icon_state = "[species.tail]_s"

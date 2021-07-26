@@ -62,7 +62,7 @@
 	name = "Bald"
 	icon_state = "bald"
 	gender = MALE
-	species_allowed = list("Human","Manifested","Insectoid","Unathi","Grey","Plasmaman","Skellington","Diona","Muton","Golem","Skeletal Vox","Horror","Ghoul","Slime")
+	species_allowed = list("Human","Manifested","Insectoid","Unathi","Grey","Plasmaman","Pony","Skellington","Diona","Muton","Golem","Skeletal Vox","Horror","Ghoul","Slime")
 
 /datum/sprite_accessory/hair/short
 	name = "Short Hair"	  // try to capatilize the names please~
@@ -585,7 +585,7 @@
 	name = "Shaved"
 	icon_state = "bald"
 	gender = NEUTER
-	species_allowed = list("Human","Manifested","Unathi","Tajaran","Skrell","Vox","Grey","Plasmaman","Skellington","Diona","Muton","Golem","Skeletal Vox","Horror","Ghoul","Slime","Mushroom","Insectoid")
+	species_allowed = list("Human","Manifested","Unathi","Tajaran","Skrell","Vox","Grey","Plasmaman","Pony","Skellington","Diona","Muton","Golem","Skeletal Vox","Horror","Ghoul","Slime","Mushroom","Insectoid")
 
 /datum/sprite_accessory/facial_hair/watson
 	name = "Watson Mustache"
@@ -679,6 +679,29 @@
 /datum/sprite_accessory/facial_hair/robotnik
 	name = "Robotnik Mustache"
 	icon_state = "facial_robotnik"
+
+/*
+//////////////////////////////////
+/  =--------------------------=  /
+/  == Tail Style Definitions ==  /
+/  =--------------------------=  /
+//////////////////////////////////
+*/
+
+/datum/sprite_accessory/tail
+
+	icon = 'icons/mob/tail_styles.dmi'
+
+/datum/sprite_accessory/tail/none
+	name = "None"
+	icon_state = "none"
+	gender = NEUTER
+	species_allowed = list("Human","Manifested","Insectoid","Unathi","Grey","Plasmaman","Pony","Skellington","Diona","Muton","Golem","Skeletal Vox","Horror","Ghoul","Slime")
+
+/datum/sprite_accessory/tail/pinkiepie
+	name = "Pinkie Pie"
+	icon_state = "pony_pinkiepie"
+	species_allowed = list("Pony")
 
 /*
 ///////////////////////////////////
@@ -1148,6 +1171,11 @@
 	icon_state = "vox_ruff_beard"
 	species_allowed = list(VOX_SHAPED)
 	do_colouration = 0
+
+/datum/sprite_accessory/hair/pinkiepie
+	name = "Pinkie Pie"
+	icon_state = "pony_pinkiepie"
+	species_allowed = list("Pony")
 
 
 //skin styles - WIP
