@@ -278,12 +278,12 @@ var/global/datum/credits/end_credits = new
 //Currently only hosts one additional song
 /datum/credits/proc/determine_round_end_song()
 	var/list/candidates = list()
-	if(FALSE) // For now do not use an alternative round end song.
-		candidates += pick("http://ss13.moe/media/source/roundend/credits/RA2_Blow_It_Up.mp3",
-						"http://ss13.moe/media/source/roundend/credits/Castanets_You_Are_The_Blood.mp3",
-						"http://ss13.moe/media/source/roundend/credits/Julee_Cruise_Falling_Instrumental.mp3",
-						"http://ss13.moe/media/source/roundend/credits/Julee_Cruise_The_World_Spins.mp3",
-						"http://ss13.moe/media/source/roundend/credits/Mike_Oldfield_Nuclear.mp3")
+	// if(ticker.station_was_nuked) // For now do not use an alternative round end song.
+		// candidates += pick("http://ss13.moe/media/source/roundend/credits/RA2_Blow_It_Up.mp3",
+						// "http://ss13.moe/media/source/roundend/credits/Castanets_You_Are_The_Blood.mp3",
+						// "http://ss13.moe/media/source/roundend/credits/Julee_Cruise_Falling_Instrumental.mp3",
+						// "http://ss13.moe/media/source/roundend/credits/Julee_Cruise_The_World_Spins.mp3",
+						// "http://ss13.moe/media/source/roundend/credits/Mike_Oldfield_Nuclear.mp3")
 
 	if(candidates.len)
 		audio_link = pick(candidates)
