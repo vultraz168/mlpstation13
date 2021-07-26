@@ -1,9 +1,9 @@
 var/global/datum/credits/end_credits = new
 
 /datum/credits
-	var/audio_post_delay = 10 SECONDS //Audio will start playing this many seconds before server shutdown.
-	var/scroll_speed = 20 //Lower is faster.
-	var/splash_time = 2000 //Time in miliseconds that each head of staff/star/production staff etc splash screen gets before displaying the next one.
+	var/audio_post_delay = 3 SECONDS //Audio will start playing this many seconds before server shutdown.
+	var/scroll_speed = 10 //Lower is faster.
+	var/splash_time = 1500 //Time in miliseconds that each head of staff/star/production staff etc splash screen gets before displaying the next one.
 
 	var/control = "mapwindow.credits" //if updating this, update in credits.html as well
 	var/file = 'code/modules/credits/credits.html'
@@ -35,7 +35,7 @@ var/global/datum/credits/end_credits = new
 	var/js_args = list()
 
 	var/change_credits_song = 1 //If positive, will change the credits song based on criteria
-	var/audio_link = "http://ss13.moe/media/source/roundend/credits/Frolic_Luciano_Michelini.mp3"
+	var/audio_link = "http://3.238.18.42/roundend_sounds/goodbye.mp3"
 	var/list/classic_roundend_jingles = list(
 		"http://ss13.moe/media/source/roundend/jingleclassic/bangindonk.mp3",
 		"http://ss13.moe/media/source/roundend/jingleclassic/apcdestroyed.mp3"
@@ -278,7 +278,7 @@ var/global/datum/credits/end_credits = new
 //Currently only hosts one additional song
 /datum/credits/proc/determine_round_end_song()
 	var/list/candidates = list()
-	if(ticker.station_was_nuked)
+	if(FALSE) // For now do not use an alternative round end song.
 		candidates += pick("http://ss13.moe/media/source/roundend/credits/RA2_Blow_It_Up.mp3",
 						"http://ss13.moe/media/source/roundend/credits/Castanets_You_Are_The_Blood.mp3",
 						"http://ss13.moe/media/source/roundend/credits/Julee_Cruise_Falling_Instrumental.mp3",
