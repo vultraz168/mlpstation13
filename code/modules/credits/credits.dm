@@ -1,8 +1,8 @@
 var/global/datum/credits/end_credits = new
 
 /datum/credits
-	var/audio_post_delay = 3 SECONDS //Audio will start playing this many seconds before server shutdown.
-	var/scroll_speed = 10 //Lower is faster.
+	var/audio_post_delay = 15 SECONDS //Audio will start playing this many seconds before server shutdown.
+	var/scroll_speed = 5 //Lower is faster.
 	var/splash_time = 1500 //Time in miliseconds that each head of staff/star/production staff etc splash screen gets before displaying the next one.
 
 	var/control = "mapwindow.credits" //if updating this, update in credits.html as well
