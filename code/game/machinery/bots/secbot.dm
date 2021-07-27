@@ -27,6 +27,7 @@
 	var/arrest_message = null //unique arrest message for beepsky variants
 	var/cuffing = 0 // Are we currently cuffing
 	var/threatlevel = 0
+	var/use_aj_sounds = FALSE
 
 	var/list/unsafe_weapons = list( //things that the secbot will check for
 		/obj/item/weapon/gun,
@@ -252,7 +253,10 @@ Auto Patrol: []"},
 				src.speak("Level [src.threatlevel] infraction alert!")
 			else
 				src.speak("[src.arrest_message]")
-			playsound(src, pick('sound/voice/bcriminal.ogg', 'sound/voice/bjustice.ogg', 'sound/voice/bfreeze.ogg'), 50, 0)
+			if (use_aj_sounds)
+				playsound(src, pick('sound/voice/aj/criminal.ogg', 'sound/voice/aj/justice.ogg', 'sound/voice/aj/freeze.ogg'), 50, 0)
+			else
+				playsound(src, pick('sound/voice/bcriminal.ogg', 'sound/voice/bjustice.ogg', 'sound/voice/bfreeze.ogg'), 50, 0)
 			visible_message("<b>[src]</b> points at [C.name]!")
 
 /obj/machinery/bot/secbot/process_bot()
@@ -298,7 +302,10 @@ Auto Patrol: []"},
 							return
 						M.handcuffed = new /obj/item/weapon/handcuffs(M)
 						M.update_inv_handcuffed()	//update handcuff overlays
-						playsound(src, pick('sound/voice/bgod.ogg', 'sound/voice/biamthelaw.ogg', 'sound/voice/bsecureday.ogg', 'sound/voice/bradio.ogg', 'sound/voice/binsult.ogg', 'sound/voice/bcreep.ogg'), 50, 0)
+						if (use_aj_sounds)
+							playsound(src, pick('sound/voice/aj/god.ogg', 'sound/voice/aj/iamthelaw.ogg', 'sound/voice/aj/secureday.ogg', 'sound/voice/aj/radio.ogg', 'sound/voice/aj/insult.ogg', 'sound/voice/aj/creep.ogg'), 50, 0)
+						else
+							playsound(src, pick('sound/voice/bgod.ogg', 'sound/voice/biamthelaw.ogg', 'sound/voice/bsecureday.ogg', 'sound/voice/bradio.ogg', 'sound/voice/binsult.ogg', 'sound/voice/bcreep.ogg'), 50, 0)
 						spawn (1.5 SECONDS)
 							cuffing = 0
 					else
@@ -457,11 +464,30 @@ Auto Patrol: []"},
 			src.overlays += image('icons/obj/aibots.dmi', "hs_arm")
 			qdel(W)
 
-	else if((istype(W, /obj/item/weapon/melee/baton)) && (src.build_step >= 3))
+	else if ((istype(W, /obj/item/weapon/reagent_containers/food/snacks/grown/apple) && (src.build_step == 3)))
+		if(user.drop_item(W))
+			src.build_step++
+			to_chat(user, "You add the apple to [src]!")
+			src.name = "helmet/signaler/prox sensor/robot arm/apple assembly"
+			src.created_name = "Sheriff Jack"
+			qdel(W)
+
+	else if((istype(W, /obj/item/weapon/melee/baton)) && (src.build_step == 3))
 		if(user.drop_item(W))
 			src.build_step++
 			to_chat(user, "You complete the Securitron! Beep boop.")
 			var/obj/machinery/bot/secbot/S = new /obj/machinery/bot/secbot
+			S.forceMove(get_turf(src))
+			S.name = src.created_name
+			W.forceMove(S)
+			S.baton = W
+			qdel(src)
+
+	else if((istype(W, /obj/item/weapon/melee/baton)) && (src.build_step == 4)) // Build Sheriff Jack
+		if(user.drop_item(W))
+			src.build_step++
+			to_chat(user, "You complete Sheriff Jack! Beep boop.")
+			var/obj/machinery/bot/secbot/beepsky/jack/S = new /obj/machinery/bot/secbot/beepsky/jack
 			S.forceMove(get_turf(src))
 			S.name = src.created_name
 			W.forceMove(S)
@@ -620,6 +646,13 @@ Auto Patrol: []"},
 			return
 		src.created_name = t
 
+/obj/machinery/bot/secbot/beepsky/jack
+	name = "Sheriff Jack"
+	desc = "Gotta get back; it's Sheriff Jack!"
+	icon = 'icons/obj/aibots.dmi'
+	icon_state = "sheriffjack0"
+	icon_initial = "sheriffjack"
+	use_aj_sounds = TRUE
 
 //Britsky
 
