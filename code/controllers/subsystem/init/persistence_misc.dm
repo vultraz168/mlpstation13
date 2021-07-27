@@ -75,6 +75,8 @@ var/datum/subsystem/persistence_misc/SSpersistence_misc
 // We just get the data from the file.
 /datum/persistence_task/round_count/on_init()
 	data = read_file()
+	if (!data) // Handle case where no such file exists
+		data = list()
 
 // We bump the round round and write it to file.
 /datum/persistence_task/round_count/on_shutdown()
