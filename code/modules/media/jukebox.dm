@@ -8,7 +8,7 @@ var/global/global_playlists = list()
 /proc/load_juke_playlists()
 	if(!config.media_base_url)
 		return
-	for(var/playlist_id in list("pony", "emagged"))
+	for(var/playlist_id in list("pony", "pony_remix", "emagged"))
 		var/url="[config.media_base_url]/index.php?playlist=[playlist_id]"
 		//testing("Updating playlist from [url]...")
 
@@ -808,7 +808,8 @@ var/global/list/loopModeNames=list(
 	playlist_id="pony"
 	// Must be defined on your server.
 	playlists=list(
-		"pony" = "The Pony Mix"
+		"pony" = "The Pony Mix",
+		"pony_remix" = "Pony Remixes and Originals"
 	)
 
 
@@ -823,7 +824,8 @@ var/global/list/loopModeNames=list(
 
 	// Must be defined on your server.
 	playlists=list(
-		"pony" = "The Pony Mix"
+		"pony" = "The Pony Mix",
+		"pony_remix" = "Pony Remixes and Originals"
 	)
 
 // So I don't have to do all this shit manually every time someone sacrifices pun-pun.
@@ -841,7 +843,8 @@ var/global/list/loopModeNames=list(
 	// Must be defined on your server.
 	playlists=list(
 		"pony" = "The Pony Mix",
-		"emagged" ="Syndicate Mix",
+		"pony_remix" = "Pony Remixes and Originals",
+		"emagged" ="Syndicate Mix"
 	)
 
 /obj/machinery/media/jukebox/superjuke/attackby(obj/item/W, mob/user)
@@ -954,7 +957,8 @@ obj/machinery/media/jukebox/holyjuke
 	playlist_id="pony"
 	// Must be defined on your server.
 	playlists=list(
-		"pony" = "The Pony Mix"
+		"pony" = "The Pony Mix",
+		"pony_remix" = "Pony Remixes and Originals"
 	)
 
 /obj/machinery/media/jukebox/holyjuke/attackby(obj/item/W, mob/user)
@@ -1008,3 +1012,7 @@ obj/machinery/media/jukebox/holyjuke
 	name = "nanovinyl - pony"
 	unformatted = "theponymix"
 	formatted = "The Pony Mix"
+/obj/item/weapon/vinyl/pony_remix
+	name = "nanovinyl - pony_remix"
+	unformatted = "pony_remix"
+	formatted = "Pony Remixes and Originals"
