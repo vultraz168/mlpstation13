@@ -2579,7 +2579,7 @@ var/global/num_vending_terminals = 1
 		/obj/item/toy/plush/fluttershy = 3,
 		/obj/item/toy/plush/rarity = 3,
 		/obj/item/toy/plush/applejack = 3,
-		/obj/item/toy/plush/lyra = 3
+		/obj/item/weapon/storage/plush/lyra = 3
 		) //Pretty much everything that had a chance to spawn.
 	contraband = list(
 		/obj/item/weapon/storage/box/smartbox/clothing_box/clownpsyche = AUTO_DROBE_DEFAULT_STOCK,
