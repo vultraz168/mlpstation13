@@ -1999,7 +1999,7 @@ var/list/living_balloons = list()
 
 /obj/item/toy/plush/derpy/rads		//Currently only causes radiation on pet 
 	name = "unreleased derpy plush"
-	desc = "a plush of derpy. it appears to have glowing slightly. "
+	desc = "a plush of derpy. it appears to be glowing slightly. "
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "derpy_plush_rads"
 	item_state = "derpy_plush_rads"
