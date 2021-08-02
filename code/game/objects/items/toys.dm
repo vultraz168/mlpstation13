@@ -1855,10 +1855,7 @@ var/list/living_balloons = list()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "anon_filly_plush"
 	item_state = "anon_filly_plush"
-	throwforce = 3
-	w_class = W_CLASS_TINY
-	throw_speed = 3
-	throw_range = 15
+	w_class = W_CLASS_SMALL
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
 	var/squee_delay = 10
@@ -1874,10 +1871,6 @@ var/list/living_balloons = list()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "anon_filly_plush"
 	item_state = "anon_filly_plush"
-	throwforce = 3
-	w_class = W_CLASS_TINY
-	throw_speed = 3
-	throw_range = 15
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
 
@@ -1887,10 +1880,6 @@ var/list/living_balloons = list()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "derpy_plush"
 	item_state = "derpy_plush"
-	throwforce = 3
-	w_class = W_CLASS_TINY
-	throw_speed = 3
-	throw_range = 15
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
 
@@ -1901,10 +1890,6 @@ var/list/living_balloons = list()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "rainbow_plush"
 	item_state = "rainbow_plush"
-	throwforce = 3
-	w_class = W_CLASS_TINY
-	throw_speed = 3
-	throw_range = 15
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
 
@@ -1915,10 +1900,6 @@ var/list/living_balloons = list()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "pinkie_plush"
 	item_state = "pinkie_plush"
-	throwforce = 3
-	w_class = W_CLASS_TINY
-	throw_speed = 3
-	throw_range = 15
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
 
@@ -1929,10 +1910,6 @@ var/list/living_balloons = list()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "twilight_plush"
 	item_state = "twilight_plush"
-	throwforce = 3
-	w_class = W_CLASS_TINY
-	throw_speed = 3
-	throw_range = 15
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
 
@@ -1943,10 +1920,6 @@ var/list/living_balloons = list()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "fluttershy_plush"
 	item_state = "fluttershy_plush"
-	throwforce = 3
-	w_class = W_CLASS_TINY
-	throw_speed = 3
-	throw_range = 15
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
 
@@ -1956,10 +1929,6 @@ var/list/living_balloons = list()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "Rarity_plush"
 	item_state = "Rarity_plush"
-	throwforce = 3
-	w_class = W_CLASS_TINY
-	throw_speed = 3
-	throw_range = 15
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
 
@@ -1970,10 +1939,6 @@ var/list/living_balloons = list()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "applejack_plush"
 	item_state = "applejack_plush"
-	throwforce = 3
-	w_class = W_CLASS_TINY
-	throw_speed = 3
-	throw_range = 15
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
 	
@@ -2003,10 +1968,6 @@ var/list/living_balloons = list()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "derpy_plush_rads"
 	item_state = "derpy_plush_rads"
-	throwforce = 3
-	w_class = W_CLASS_TINY
-	throw_speed = 3
-	throw_range = 15
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
 	var/last_event = 0
@@ -2014,13 +1975,53 @@ var/list/living_balloons = list()
 
 /obj/item/toy/plush/lyra
 	name = "lyra plush"
-	desc = "a plush of lyra. There appears to be a hole in it"
+	desc = "a plush of lyra."
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "lyra_plush"
 	item_state = "lyra_plush"
 	throwforce = 3
-	w_class = W_CLASS_TINY
 	throw_speed = 3
 	throw_range = 15
+	attack_verb = list("boops")
+	hitsound = 'sound/misc/squee.ogg'
+
+/obj/item/weapon/storage/plush/attack_self(mob/user as mob)
+		squee()
+		to_chat(user, "You pet [src]. it's so cute.")
+
+/obj/item/weapon/storage/plush/proc/squee()
+	if(world.time - last_squee_time >= squee_delay)
+		last_squee_time = world.time
+		playsound(src, hitsound, 50, vary_pitch)
+		return 1
+	return 0
+
+/obj/item/weapon/storage/plush/Crossed(var/mob/living/AM)
+	if (isliving(AM) && world.time > next_squee)
+		squee()
+		next_squee = world.time + squee_delay
+
+/obj/item/weapon/storage/plush
+	name = "plush"
+	desc = "a plush. There appears to be a hole in it."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "anon_filly_plush"
+	item_state = "anon_filly_plush"
+	attack_verb = list("boops")
+	hitsound = 'sound/misc/squee.ogg'
+	w_class = W_CLASS_SMALL
+	storage_slots = 1
+	var/squee_delay = 10
+	var/last_squee_time = 0
+	var/vary_pitch = 1
+	var/can_squee_baton = 1
+	var/next_squee = 0
+
+/obj/item/weapon/storage/plush/lyra
+	name = "lyra plush"
+	desc = "a plush of lyra. There appears to be a hole in it."
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "lyra_plush"
+	item_state = "lyra_plush"
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
