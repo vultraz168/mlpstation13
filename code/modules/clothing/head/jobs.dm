@@ -206,6 +206,7 @@
 	name = "dress shoes"
 	desc = "They appear impeccably polished."
 	icon_state = "laceups"
+	species_fit = list(PONY_SHAPED)
 
 /obj/item/clothing/head/beret/engineering
 	name = "engineering beret"

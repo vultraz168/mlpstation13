@@ -1364,6 +1364,7 @@ var/global/list/cloudnine_stuff = list(
 	permeability_coefficient = 0.05
 	max_heat_protection_temperature = GLOVES_MAX_HEAT_PROTECTION_TEMPERATURE
 	_color = "golden"
+	species_fit = list(PONY_SHAPED)
 
 /obj/item/airshield_projector
 	name = "airshield projector"

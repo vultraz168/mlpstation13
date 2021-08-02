@@ -211,4 +211,4 @@
 	clothing_flags = ONESIZEFITSALL
 	gender = PLURAL
 	body_parts_covered = LOWER_TORSO|LEGS
-	species_fit = list(VOX_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, INSECT_SHAPED, PONY_SHAPED)

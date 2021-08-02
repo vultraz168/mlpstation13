@@ -10,7 +10,7 @@
 	actions_types = list(/datum/action/item_action/change_appearance_shoes)
 	siemens_coefficient = 0.8
 	permeability_coefficient = 0.90
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, UNDEAD_SHAPED, MUSHROOM_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, UNDEAD_SHAPED, MUSHROOM_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 // desc replacement block
 /obj/item/clothing/shoes/syndigaloshes/examine(mob/user)
@@ -127,7 +127,7 @@
 /obj/item/clothing/shoes/sandal/marisa/leather
 	icon_state = "laceups"
 	item_state = "laceups"
-	species_fit = list(INSECT_SHAPED)
+	species_fit = list(INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/shoes/galoshes
 	name = "galoshes"
@@ -136,7 +136,7 @@
 	permeability_coefficient = 0.05
 	clothing_flags = NOSLIP
 	slowdown = MISC_SHOE_SLOWDOWN
-	species_fit = list(VOX_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 	heat_conductivity = INS_SHOE_HEAT_CONDUCTIVITY
 	sterility = 100
 
@@ -312,7 +312,7 @@
 	item_state = "jackboots"
 	_color = "hosred"
 	siemens_coefficient = 0.7
-	species_fit = list(VOX_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 	heat_conductivity = INS_SHOE_HEAT_CONDUCTIVITY
 	bonus_kick_damage = 3
 	footprint_type = /obj/effect/decal/cleanable/blood/tracks/footprints/boots
@@ -381,7 +381,7 @@
 	name = "laceup shoes"
 	desc = "The height of fashion, and they're pre-polished!"
 	icon_state = "laceups"
-	species_fit = list(VOX_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/shoes/purplepumps
 	name = "purple pumps"
@@ -463,7 +463,7 @@
 	desc = "Thick-soled boots for industrial work environments."
 	icon_state = "workboots"
 	item_state = "workboots"
-	species_fit = list(VOX_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 	footprint_type = /obj/effect/decal/cleanable/blood/tracks/footprints/boots
 
 /obj/item/clothing/shoes/rottenshoes
@@ -499,7 +499,7 @@
 	desc = "The height of fashion, and they're pre-polished!"
 	icon_state = "laceups"
 	item_state = "laceups"
-	species_fit = list(VOX_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 	actions_types = list(/datum/action/item_action/generic_toggle)
 	var/toggle = FALSE
 

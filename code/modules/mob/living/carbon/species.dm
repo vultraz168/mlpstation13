@@ -1353,10 +1353,10 @@ var/list/has_died_as_golem = list()
 
 	uniform_icons = 'icons/mob/species/pony/uniform.dmi'
 //	fat_uniform_icons = 'icons/mob/species/pony/uniform_fat.dmi'
-//	gloves_icons    = 'icons/mob/species/pony/gloves.dmi'
-//	glasses_icons   = 'icons/mob/species/pony/eyes.dmi'
-//	ears_icons      = 'icons/mob/species/pony/ears.dmi'
-//	shoes_icons     = 'icons/mob/species/pony/shoes.dmi'
+	gloves_icons    = 'icons/mob/species/pony/gloves.dmi'
+	glasses_icons   = 'icons/mob/species/pony/eyes.dmi'
+	ears_icons      = 'icons/mob/species/pony/ears.dmi'
+	shoes_icons     = 'icons/mob/species/pony/shoes.dmi'
 //	head_icons      = 'icons/mob/species/pony/head.dmi'
 //	belt_icons      = 'icons/mob/species/pony/belt.dmi'
 //	wear_suit_icons = 'icons/mob/species/pony/suit.dmi'
@@ -1381,8 +1381,8 @@ var/list/has_died_as_golem = list()
 
 // God forgive me for this travesty; I just couldn't find a better way to do this.
 // So basically, rather than making players spawn as mob/living/carbon/human/pony, we're running the code from scratch right here.
+// Obvious WIP, mostly just changes leg rendering and eye overlay at the moment.
 /datum/species/pony/update_body(var/mob/living/carbon/human/H, var/update_icons=1)
-	message_admins("Calling pony/update_body()")
 	var/husk_color_mod = rgb(96,88,80)
 	var/hulk_color_mod = rgb(48,224,40)
 	var/necrosis_color_mod = rgb(10,50,0)
@@ -1436,7 +1436,7 @@ var/list/has_died_as_golem = list()
 				temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
 				//This hides the legs behind the pony's body when facing South (towards the camera)
 				if(istype(part, /datum/organ/external/l_leg) ||  istype(part, /datum/organ/external/l_foot) || istype(part, /datum/organ/external/r_leg) || istype(part, /datum/organ/external/r_foot))
-					var/icon/temp3 = new('icons/mob/human_races/pony/r_pony.dmi',"blank")
+					var/icon/temp3 = new('icons/mob/human_races/pony/r_pony.dmi',"blank_4")
 					temp3.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
 					H.stand_icon.Blend(temp3, ICON_UNDERLAY)
 				else
