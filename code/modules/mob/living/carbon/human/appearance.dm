@@ -21,8 +21,10 @@
 	var/b_facial
 
 	var/r_eyes
-	var/g_eyes	
+	var/g_eyes
 	var/b_eyes
+
+	var/t_style = "None"
 
 /mob/living/carbon/human/
 	var/datum/human_appearance/my_appearance
@@ -48,6 +50,7 @@
 	new_looks.r_eyes = r_eyes
 	new_looks.g_eyes = g_eyes
 	new_looks.b_eyes = b_eyes
+	new_looks.t_style = t_style
 	return new_looks
 
 /datum/human_appearance/proc/randomise(var/new_gender, var/species)
@@ -55,10 +58,11 @@
 		gender = new_gender
 	else
 		gender = pick(MALE, FEMALE)
-	
+
 	s_tone = random_skin_tone(species)
 	h_style = random_hair_style(gender, species)
 	f_style = random_facial_hair_style(gender, species)
+	t_style = random_tail_style(gender, species)
 
 	var/list/hair_colour = randomize_hair_color("hair")
 	var/list/facial_hair_colour = randomize_hair_color("facial")

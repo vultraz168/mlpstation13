@@ -8,6 +8,16 @@
 
 	return h_style
 
+/proc/random_tail_style(gender, species = "Human")
+	var/t_style = "None"
+
+	var/list/valid_tailstyles = valid_sprite_accessories(tail_styles_list, gender, species)
+
+	if(valid_tailstyles.len)
+		t_style = pick(valid_tailstyles)
+
+	return t_style
+
 /proc/GetOppositeDir(var/dir)
 	switch(dir)
 		if(NORTH)

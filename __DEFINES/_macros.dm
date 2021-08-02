@@ -24,6 +24,8 @@
 
 #define isplasmaman(A) (ishuman(A) && istype(A:species, /datum/species/plasmaman))
 
+#define ispony(A) (ishuman(A) && istype(A:species, /datum/species/pony))
+
 #define isskellington(A) (ishuman(A) && istype(A:species, /datum/species/skellington))
 
 #define isskelevox(A) (ishuman(A) && istype(A:species, /datum/species/skellington/skelevox))

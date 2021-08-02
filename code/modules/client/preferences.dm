@@ -136,11 +136,15 @@ var/const/MAX_SAVE_SLOTS = 16
 	var/r_hair = 0						//Hair color
 	var/g_hair = 0						//Hair color
 	var/b_hair = 0						//Hair color
+	var/t_style = "None"				//Tail style
 	var/f_style = "Shaved"				//Face hair type
 	var/r_facial = 0					//Face hair color
 	var/g_facial = 0					//Face hair color
 	var/b_facial = 0					//Face hair color
 	var/s_tone = 0						//Skin color
+	var/r_skin = 0						//Skin color RGB (MULTICOLOR species)
+	var/g_skin = 0						//Skin color RGB
+	var/b_skin = 0						//Skin color RGB
 	var/r_eyes = 0						//Eye color
 	var/g_eyes = 0						//Eye color
 	var/b_eyes = 0						//Eye color
@@ -327,7 +331,12 @@ var/const/MAX_SAVE_SLOTS = 16
 	</td><td valign='top' width='21%'>
 	<h3>Eye Color</h3>
 	<span style='border: 1px solid #161616; background-color: #[num2hex(r_eyes, 2)][num2hex(g_eyes, 2)][num2hex(b_eyes, 2)];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=eyes;task=input'>Change</a><BR>
-	</tr></td></table>
+	</td><td valign='top' width='21%'>
+	<h3>Tail Style</h3>
+	<a href='?_src_=prefs;preference=t_style;task=input'>[t_style]</a><BR>
+	<a href='?_src_=prefs;preference=previous_tail_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_tail_style;task=input'>&gt;</a><BR>
+	<span style='border: 1px solid #161616; background-color: #[num2hex(r_hair, 2)][num2hex(g_hair, 2)][num2hex(b_hair, 2)];'>&nbsp;&nbsp;&nbsp;</span><BR>
+	</td></tr></table>
 	"}
 
 	return dat
@@ -1129,6 +1138,8 @@ NOTE:  The change will take effect AFTER any current recruiting periods."}
 					b_facial = rand(0,255)
 				if("f_style")
 					f_style = random_facial_hair_style(gender, species)
+				if("t_style")
+					t_style = random_tail_style(gender, species)
 				if("underwear")
 					underwear = rand(1,underwear_m.len)
 					ShowChoices(user)
@@ -1137,7 +1148,12 @@ NOTE:  The change will take effect AFTER any current recruiting periods."}
 					g_eyes = rand(0,255)
 					b_eyes = rand(0,255)
 				if("s_tone")
-					s_tone = random_skin_tone(species)
+					if(species == "Pony")
+						r_skin = rand(0,255)
+						g_skin = rand(0,255)
+						b_skin = rand(0,255)
+					else
+						s_tone = random_skin_tone(species)
 				if("bag")
 					backbag = rand(1,5)
 				/*if("skin_style")
@@ -1160,6 +1176,10 @@ NOTE:  The change will take effect AFTER any current recruiting periods."}
 					f_style = next_list_item(f_style, valid_sprite_accessories(facial_hair_styles_list, gender, species))
 				if("previous_facehair_style")
 					f_style = previous_list_item(f_style, valid_sprite_accessories(facial_hair_styles_list, gender, species))
+				if("next_tail_style")
+					t_style = next_list_item(t_style, valid_sprite_accessories(tail_styles_list, gender, species))
+				if("previous_tail_style")
+					t_style = previous_list_item(t_style, valid_sprite_accessories(tail_styles_list, gender, species))
 				if("next_preview_background")
 					preview_background = next_list_item(preview_background, background_options)
 				if("previous_preview_background")
@@ -1203,12 +1223,22 @@ NOTE:  The change will take effect AFTER any current recruiting periods."}
 							//this shouldn't happen
 							f_style = facial_hair_styles_list["Shaved"]
 
+						var/list/valid_tailstyles = valid_sprite_accessories(tail_styles_list, gender, species)
+						if(valid_tailstyles.len)
+							t_style = pick(valid_tailstyles)
+						else
+							//this shouldn't happen
+							t_style = tail_styles_list["None"]
+
 						//reset hair colour and skin colour
 						r_hair = 0//hex2num(copytext(new_hair, 2, 4))
 						g_hair = 0//hex2num(copytext(new_hair, 4, 6))
 						b_hair = 0//hex2num(copytext(new_hair, 6, 8))
 
 						s_tone = 0
+						r_skin = 0
+						g_skin = 0
+						b_skin = 0
 
 					for(var/datum/job/job in job_master.occupations)
 						if(job.species_blacklist.Find(species)) //If new species is in a job's blacklist
@@ -1247,7 +1277,7 @@ NOTE:  The change will take effect AFTER any current recruiting periods."}
 						metadata = sanitize(copytext(new_metadata,1,MAX_MESSAGE_LEN))
 
 				if("hair")
-					if(species == "Human" || species == "Unathi" || species == "Diona" || species == "Mushroom")
+					if(species == "Human" || species == "Unathi" || species == "Diona" || species == "Mushroom" || species == "Pony")
 						var/new_hair = input(user, "Choose your character's hair colour:", "Character Preference", rgb(r_hair, g_hair, b_hair)) as color|null
 						if(new_hair)
 							r_hair = hex2num(copytext(new_hair, 2, 4))
@@ -1299,6 +1329,11 @@ NOTE:  The change will take effect AFTER any current recruiting periods."}
 						g_eyes = hex2num(copytext(new_eyes, 4, 6))
 						b_eyes = hex2num(copytext(new_eyes, 6, 8))
 
+				if("t_style")
+					var/new_t_style = input(user, "Choose your character's tail style:", "Character Preference")  as null|anything in valid_sprite_accessories(tail_styles_list, gender, species)
+					if(new_t_style)
+						t_style = new_t_style
+
 				if("s_tone")
 					if(species == "Human")
 						var/new_s_tone = input(user, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Character Preference")  as num|null
@@ -1324,6 +1359,12 @@ NOTE:  The change will take effect AFTER any current recruiting periods."}
 							r_hair = clamp(r_hair, 0, 80)
 							g_hair = clamp(g_hair, 0, 50)
 							b_hair = clamp(b_hair, 0, 35)
+					else if(species == "Pony")
+						var/skinrgb = input(user, "Choose your Pony's coat color.", "Character Preference", rgb(r_skin, g_skin, b_skin)) as color|null
+						if(skinrgb) // Update whenever the body greyscale of r_pony.dmi changes, please. Makes it easier to match your color.
+							r_skin = clamp(hex2num(copytext(skinrgb, 2, 4)) - 40, 0, 255)
+							g_skin = clamp(hex2num(copytext(skinrgb, 4, 6)) - 40, 0, 255)
+							b_skin = clamp(hex2num(copytext(skinrgb, 6, 8)) - 40, 0, 255)
 					else
 						to_chat(user,"Your species doesn't have different skin tones. Yet?")
 						return
@@ -1665,8 +1706,13 @@ Values up to 1000 are allowed.", "FPS", fps) as null|num
 
 	character.my_appearance.s_tone = s_tone
 
+	character.multicolor_skin_r = r_skin
+	character.multicolor_skin_g = g_skin
+	character.multicolor_skin_b = b_skin
+
 	character.my_appearance.h_style = h_style
 	character.my_appearance.f_style = f_style
+	character.my_appearance.t_style = t_style
 
 	character.dna.ResetUIFrom(character)
 

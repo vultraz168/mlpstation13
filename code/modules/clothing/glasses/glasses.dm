@@ -85,19 +85,19 @@ BLIND     // can't see anything
 	desc = "Optical Meson Scanner with prescription lenses."
 	prescription = 1
 	eyeprot = -1
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/glasses/hud/health/prescription
 	name = "prescription health scanner HUD"
 	desc = "A Health Scanner HUD with prescription lenses."
 	prescription = 1
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/glasses/sunglasses/sechud/prescription
 	name = "prescription security HUD"
 	desc = "A Security HUD with prescription lenses."
 	prescription = 1
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /*
 	PATHOGEN HUD
@@ -110,7 +110,7 @@ var/list/science_goggles_wearers = list()
 	icon_state = "purple"
 	item_state = "glasses"
 	origin_tech = Tc_MATERIALS + "=1"
-	species_fit = list(GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 	actions_types = list(/datum/action/item_action/toggle_goggles)
 
 	glasses_fit = TRUE
@@ -119,7 +119,7 @@ var/list/science_goggles_wearers = list()
 /obj/item/clothing/glasses/science/prescription
 	name = "prescription science goggles"
 	prescription = 1
-	species_fit = list(GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/glasses/science/attack_self(mob/user)
 	toggle(user)
@@ -224,7 +224,7 @@ var/list/science_goggles_wearers = list()
 	icon_state = "glasses"
 	item_state = "glasses"
 	prescription = 1
-	species_fit = list(GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 	w_class = W_CLASS_TINY
 
 /obj/item/clothing/glasses/regular/kick_act(mob/living/carbon/human/H)
@@ -249,7 +249,7 @@ var/list/science_goggles_wearers = list()
 	desc = "Forest green glasses, like the kind you'd wear when hatching a nasty scheme."
 	icon_state = "gglasses"
 	item_state = "gglasses"
-	species_fit = list(GREY_SHAPED)
+	species_fit = list(GREY_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/glasses/sunglasses
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
@@ -259,7 +259,7 @@ var/list/science_goggles_wearers = list()
 	origin_tech = Tc_COMBAT + "=2"
 	darkness_view = -1
 	eyeprot = 1
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/glasses/sunglasses/virus
 
@@ -293,7 +293,7 @@ var/list/science_goggles_wearers = list()
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes, and the colored lenses let you see the world in purple."
 	name = "purple sunglasses"
 	icon_state = "sun_purple"
-	species_fit = list(GREY_SHAPED)
+	species_fit = list(GREY_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/glasses/sunglasses/star
 	name = "star-shaped sunglasses"
@@ -312,13 +312,13 @@ var/list/science_goggles_wearers = list()
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes, and the colored lenses let you see the world in red."
 	icon_state = "sunred"
 	item_state = "sunred"
-	species_fit = list(GREY_SHAPED)
+	species_fit = list(GREY_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/glasses/sunglasses/security
 	name = "security sunglasses"
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes. Often worn by budget security officers."
 	icon_state = "sunhud"
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/glasses/virussunglasses
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes."
@@ -327,7 +327,7 @@ var/list/science_goggles_wearers = list()
 	item_state = "sunglasses"
 	origin_tech = Tc_COMBAT + "=2"
 	darkness_view = -1
-	species_fit = list(VOX_SHAPED, GREY_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/glasses/welding
 	name = "welding goggles"
@@ -338,7 +338,7 @@ var/list/science_goggles_wearers = list()
 	actions_types = list(/datum/action/item_action/toggle_goggles)
 	var/up = 0
 	eyeprot = 3
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/glasses/welding/attack_self()
 	toggle()
@@ -371,7 +371,7 @@ var/list/science_goggles_wearers = list()
 	desc = "Welding goggles made from more expensive materials, strangely smells like potatoes. Allows for better vision than normal goggles.."
 	icon_state = "rwelding-g"
 	item_state = "rwelding-g"
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 	origin_tech = Tc_ENGINEERING + "=3;" + Tc_MATERIALS + "=3"
 
 /obj/item/clothing/glasses/sunglasses/blindfold
@@ -382,13 +382,13 @@ var/list/science_goggles_wearers = list()
 	see_invisible = SEE_INVISIBLE_LIVING
 	vision_flags = BLIND
 	eyeprot = 4 //What you can't see can't burn your eyes out
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 	min_harm_label = 0
 
 /obj/item/clothing/glasses/sunglasses/prescription
 	name = "prescription sunglasses"
 	prescription = 1
-	species_fit = list(VOX_SHAPED, GREY_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/glasses/sunglasses/big
 	desc = "Strangely ancient technology used to help provide rudimentary eye cover. Larger than average enhanced shielding blocks many flashes."
@@ -402,7 +402,7 @@ var/list/science_goggles_wearers = list()
 	desc = "Sunglasses with a HUD."
 	icon_state = "sunhud"
 	var/obj/item/clothing/glasses/hud/security/hud = null
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/glasses/sunglasses/sechud/New()
 	..()
@@ -433,7 +433,7 @@ var/list/science_goggles_wearers = list()
 	name = "sunglasses"
 	icon_state = "sun"
 	item_state = "sunglasses"
-	species_fit = list(VOX_SHAPED, GREY_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, PONY_SHAPED)
 	darkness_view = 0 //Subtly better than normal shades
 	origin_tech = Tc_SYNDICATE + "=3"
 	actions_types = list(/datum/action/item_action/change_appearance_shades)
@@ -490,7 +490,7 @@ var/list/science_goggles_wearers = list()
 	desc = "Thermals in the shape of glasses."
 	icon_state = "thermal"
 	item_state = "glasses"
-	species_fit = list(GREY_SHAPED)
+	species_fit = list(GREY_SHAPED, PONY_SHAPED)
 	origin_tech = Tc_MAGNETS + "=3"
 	vision_flags = SEE_MOBS
 	see_invisible = SEE_INVISIBLE_MINIMUM
@@ -516,7 +516,7 @@ var/list/science_goggles_wearers = list()
 	desc = "Used for seeing walls, floors, and stuff through anything."
 	icon_state = "meson"
 	origin_tech = Tc_MAGNETS + "=3;" + Tc_SYNDICATE + "=4"
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/glasses/thermal/monocle
 	name = "Thermonocle"

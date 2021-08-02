@@ -241,6 +241,9 @@ var/global/list/whitelisted_species = list("Human")
 /datum/species/proc/updatespeciescolor(var/mob/living/carbon/human/H) //Handles changing icobase for species that have multiple skin colors.
 	return
 
+/datum/species/proc/update_body(var/mob/living/carbon/human/H, var/update_icons=1)
+	return
+
 // Sent from /datum/lung_gas/metabolizable.
 /datum/species/proc/receiveGas(var/gas_id, var/ratio, var/moles, var/mob/living/carbon/human/H)
 	//testing("receiveGas: [gas_id] ? [breath_type] - ratio=[ratio], moles=[moles]")
@@ -1335,3 +1338,158 @@ var/list/has_died_as_golem = list()
 
 	H.drop_all()
 	qdel(src)
+
+/datum/species/pony // /mlp/
+	name = "Pony"
+	icobase = 'icons/mob/human_races/pony/r_pony.dmi'
+//	deform = 'icons/mob/human_races/pony/r_def_pony.dmi'
+	eyes = "pony_eyes_s"
+	tail = "none" // This is just to satisfy update_tail_showing, we don't actually use this right now.
+	known_languages = list(LANGUAGE_HUMAN) // Custom pony language optional.
+	primitive = /mob/living/carbon/monkey // Just to keep them SoC friendly.
+
+	flags = IS_WHITELISTED
+	anatomy_flags = HAS_LIPS | CAN_BE_FAT | HAS_SWEAT_GLANDS | MULTICOLOR | HAS_TAIL
+
+	uniform_icons = 'icons/mob/species/pony/uniform.dmi'
+//	fat_uniform_icons = 'icons/mob/species/pony/uniform_fat.dmi'
+	gloves_icons    = 'icons/mob/species/pony/gloves.dmi'
+	glasses_icons   = 'icons/mob/species/pony/eyes.dmi'
+	ears_icons      = 'icons/mob/species/pony/ears.dmi'
+	shoes_icons     = 'icons/mob/species/pony/shoes.dmi'
+//	head_icons      = 'icons/mob/species/pony/head.dmi'
+//	belt_icons      = 'icons/mob/species/pony/belt.dmi'
+//	wear_suit_icons = 'icons/mob/species/pony/suit.dmi'
+//	wear_mask_icons = 'icons/mob/species/pony/masks.dmi'
+//	back_icons      = 'icons/mob/species/pony/back.dmi'
+
+	species_intro = "You are a Pony.<br>\
+					You're like a human, except you walk on four legs and are much cuter."
+
+/datum/species/pony/create_organs(var/mob/living/carbon/human/H) // Peak spaghetti. Makes arms render one in front the other.
+	..()
+
+	H.organs_by_name[LIMB_LEFT_ARM].icon_position = LEFT
+	H.organs_by_name[LIMB_LEFT_HAND].icon_position = LEFT
+	H.organs_by_name[LIMB_RIGHT_ARM].icon_position = RIGHT
+	H.organs_by_name[LIMB_RIGHT_HAND].icon_position = RIGHT
+
+
+/datum/species/pony/gib(mob/living/carbon/human/H)
+	..()
+	H.default_gib()
+
+// God forgive me for this travesty; I just couldn't find a better way to do this.
+// So basically, rather than making players spawn as mob/living/carbon/human/pony, we're running the code from scratch right here.
+// Obvious WIP, mostly just changes leg rendering and eye overlay at the moment.
+/datum/species/pony/update_body(var/mob/living/carbon/human/H, var/update_icons=1)
+	var/husk_color_mod = rgb(96,88,80)
+	var/hulk_color_mod = rgb(48,224,40)
+	var/necrosis_color_mod = rgb(10,50,0)
+
+	var/husk = (M_HUSK in H.mutations)  //100% unnecessary -Agouri	//nope, do you really want to iterate through src.mutations repeatedly? -Pete
+	var/fat = (M_FAT in H.mutations) && (H.species && H.species.anatomy_flags & CAN_BE_FAT)
+	var/hulk = (M_HULK in H.mutations) && !ishorrorform(H) && !isgrue(H) && H.mind.special_role != HIGHLANDER // Part of the species.
+	var/skeleton = (M_SKELETON in H.mutations)
+
+	var/g = "m"
+	if(H.gender == FEMALE)
+		g = "f"
+
+	var/datum/organ/external/chest = H.get_organ(LIMB_CHEST)
+	H.stand_icon = chest.get_icon(g,fat)
+	if(!skeleton)
+		if(husk)
+			H.stand_icon.ColorTone(husk_color_mod)
+		else if(hulk)
+			var/list/TONE = ReadRGB(hulk_color_mod)
+			H.stand_icon.MapColors(rgb(TONE[1],0,0),rgb(0,TONE[2],0),rgb(0,0,TONE[3]))
+
+	var/datum/organ/external/head = H.get_organ(LIMB_HEAD)
+	var/has_head = 0
+	if(head && !(head.status & ORGAN_DESTROYED))
+		has_head = 1
+
+	for(var/datum/organ/external/part in H.organs)
+		if(!istype(part, /datum/organ/external/chest) && !(part.status & ORGAN_DESTROYED))
+			var/icon/temp
+			if (istype(part, /datum/organ/external/groin) || istype(part, /datum/organ/external/head))
+				temp = part.get_icon(g,fat)
+			else
+				temp = part.get_icon()
+
+			if(part.status & ORGAN_DEAD)
+				temp.ColorTone(necrosis_color_mod)
+				temp.SetIntensity(0.7)
+
+			else if(!skeleton)
+				if(husk)
+					temp.ColorTone(husk_color_mod)
+				else if(hulk)
+					var/list/TONE = ReadRGB(hulk_color_mod)
+					temp.MapColors(rgb(TONE[1],0,0),rgb(0,TONE[2],0),rgb(0,0,TONE[3]))
+
+			//That part makes left and right legs drawn topmost and lowermost when human looks WEST or EAST
+			//And no change in rendering for other parts (they icon_position is 0, so goes to 'else' part)
+			if(part.icon_position&(LEFT|RIGHT))
+				var/icon/temp2 = new('icons/mob/human_races/pony/r_pony.dmi',"blank")
+				temp2.Insert(new/icon(temp,dir=NORTH),dir=NORTH)
+				//This hides the legs behind the pony's body when facing South (towards the camera)
+				if(istype(part, /datum/organ/external/l_leg) ||  istype(part, /datum/organ/external/l_foot) || istype(part, /datum/organ/external/r_leg) || istype(part, /datum/organ/external/r_foot))
+					var/icon/temp3 = new('icons/mob/human_races/pony/r_pony.dmi',"blank_4")
+					temp3.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
+					H.stand_icon.Blend(temp3, ICON_UNDERLAY)
+				else
+					temp2.Insert(new/icon(temp,dir=SOUTH),dir=SOUTH)
+
+				if(!(part.icon_position & LEFT))
+					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
+				if(!(part.icon_position & RIGHT))
+					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
+				H.stand_icon.Blend(temp2, ICON_OVERLAY)
+				temp2 = new('icons/mob/human_races/pony/r_pony.dmi',"blank")
+				if(part.icon_position & LEFT)
+					temp2.Insert(new/icon(temp,dir=EAST),dir=EAST)
+				if(part.icon_position & RIGHT)
+					temp2.Insert(new/icon(temp,dir=WEST),dir=WEST)
+				H.stand_icon.Blend(temp2, ICON_UNDERLAY)
+			else
+				H.stand_icon.Blend(temp, ICON_OVERLAY)
+
+	//Skin tone
+	if(!skeleton && !husk && !hulk)
+		if(H.species.anatomy_flags & MULTICOLOR)
+			H.stand_icon.Blend(rgb(H.multicolor_skin_r, H.multicolor_skin_g, H.multicolor_skin_b), ICON_ADD)
+
+	if(husk)
+		var/icon/mask = new(H.stand_icon)
+		var/icon/husk_over = new(H.race_icon,"overlay_husk")
+		mask.MapColors(0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,1, 0,0,0,0)
+		husk_over.Blend(mask, ICON_ADD)
+		H.stand_icon.Blend(husk_over, ICON_OVERLAY)
+
+	if(has_head)
+		//Eyes
+		if(!skeleton)
+			var/icon/eyes_s = new/icon('icons/mob/hair_styles.dmi', eyes)
+			eyes_s.Blend(rgb(H.my_appearance.r_eyes, H.my_appearance.g_eyes, H.my_appearance.b_eyes), ICON_ADD)
+			H.stand_icon.Blend(eyes_s, ICON_OVERLAY)
+			var/icon/eyesoverlay = new/icon('icons/mob/hair_styles.dmi', "pony_eyes_o")
+			H.stand_icon.Blend(eyesoverlay, ICON_OVERLAY)
+
+		//Mouth	(lipstick!)
+		if(H.lip_style)
+			H.stand_icon.Blend(new/icon('icons/mob/hair_styles.dmi', "lips_[H.lip_style]_s"), ICON_OVERLAY)
+
+		if(H.eye_style)
+			H.stand_icon.Blend(new/icon('icons/mob/hair_styles.dmi', "eyeshadow_[H.eye_style]_light_s"), ICON_OVERLAY)
+
+	if(update_icons)
+		H.update_icons()
+
+	if(H.body_alphas.len)
+		var/lowest_alpha = H.get_lowest_body_alpha()
+		H.stand_icon -= rgb(0,0,0,lowest_alpha)
+
+	//tail
+	H.update_tail_showing(0)

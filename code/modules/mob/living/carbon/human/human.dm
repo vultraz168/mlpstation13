@@ -61,6 +61,11 @@
 	my_appearance.h_style = "Bald"
 	regenerate_icons()
 
+/mob/living/carbon/human/pony/New(var/new_loc, delay_ready_dna = 0)
+	..(new_loc, "Pony")
+	my_appearance.h_style = "Bald"
+	regenerate_icons()
+
 /mob/living/carbon/human/muton/New(var/new_loc, delay_ready_dna = 0)
 	..(new_loc, "Muton")
 	my_appearance.h_style = "Bald"

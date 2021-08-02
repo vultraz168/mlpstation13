@@ -59,6 +59,9 @@ var/global/list/hair_styles_female_list			= list()
 var/global/list/facial_hair_styles_list			= list()
 var/global/list/facial_hair_styles_male_list	= list()
 var/global/list/facial_hair_styles_female_list	= list()
+var/global/list/tail_styles_list				= list()
+var/global/list/tail_styles_male_list			= list()
+var/global/list/tail_styles_female_list			= list()
 
 /proc/buildHairLists()
 	var/list/paths
@@ -87,6 +90,19 @@ var/global/list/facial_hair_styles_female_list	= list()
 			else
 				facial_hair_styles_male_list += H.name
 				facial_hair_styles_female_list += H.name
+	paths = typesof(/datum/sprite_accessory/tail) - /datum/sprite_accessory/tail
+	var/datum/sprite_accessory/tail/T
+	for(. in paths)
+		T = new .
+		tail_styles_list[T.name] = T
+		switch(T.gender)
+			if(MALE)
+				tail_styles_male_list += T.name
+			if(FEMALE)
+				tail_styles_female_list += T.name
+			else
+				tail_styles_male_list += T.name
+				tail_styles_female_list += T.name
 	return
 
 /////////////////
