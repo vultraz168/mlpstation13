@@ -1830,17 +1830,17 @@ var/list/living_balloons = list()
 	icon_state = "foam_hand"
 	inhand_states = list("left_hand" = 'icons/mob/in-hand/left/toys.dmi', "right_hand" = 'icons/mob/in-hand/right/toys.dmi')
 	w_class = W_CLASS_LARGE
-	
+
 /obj/item/toy/plush/attack_self(mob/user as mob)
 		squee()
 		to_chat(user, "You pet [src]. it's so cute.")
-		
+
 
 /obj/item/toy/plush/Crossed(var/mob/living/AM)
 	if (isliving(AM) && world.time > next_squee)
 		squee()
 		next_squee = world.time + squee_delay
-		
+
 
 /obj/item/toy/plush/proc/squee()
 	if(world.time - last_squee_time >= squee_delay)
@@ -1867,7 +1867,7 @@ var/list/living_balloons = list()
 	var/can_squee_baton = 1
 	var/next_squee = 0
 
-	
+
 /obj/item/toy/plush/anon
 	name = "anon filly plush"
 	desc = "a plush of anon filly."
@@ -1880,7 +1880,7 @@ var/list/living_balloons = list()
 	throw_range = 15
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
-	
+
 /obj/item/toy/plush/derpy
 	name = "derpy plush"
 	desc = "a plush of derpy."
@@ -1893,8 +1893,8 @@ var/list/living_balloons = list()
 	throw_range = 15
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
-	
-	
+
+
 /obj/item/toy/plush/rainbow
 	name = "rainbow dash plush"
 	desc = "a plush of rainbow dash."
@@ -1908,7 +1908,7 @@ var/list/living_balloons = list()
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
 
-	
+
 /obj/item/toy/plush/pinkie
 	name = "pinkie pie plush"
 	desc = "a plush of pinkie pie."
@@ -1921,8 +1921,8 @@ var/list/living_balloons = list()
 	throw_range = 15
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
-	
-	
+
+
 /obj/item/toy/plush/twilight
 	name = "twilight sparkle plush"
 	desc = "a plush of twilight sparkle."
@@ -1935,8 +1935,8 @@ var/list/living_balloons = list()
 	throw_range = 15
 	attack_verb = list("boops")
 	hitsound = 'sound/misc/squee.ogg'
-	
-	
+
+
 /obj/item/toy/plush/fluttershy
 	name = "fluttershy plush"
 	desc = "a plush of fluttershy."
@@ -1970,6 +1970,54 @@ var/list/living_balloons = list()
 	icon = 'icons/obj/toy.dmi'
 	icon_state = "applejack_plush"
 	item_state = "applejack_plush"
+	throwforce = 3
+	w_class = W_CLASS_TINY
+	throw_speed = 3
+	throw_range = 15
+	attack_verb = list("boops")
+	hitsound = 'sound/misc/squee.ogg'
+	
+
+/obj/item/toy/plush/derpy/rads/proc/radiatepone()
+	if(!active)
+		if(world.time > last_event+15)
+			active = 1
+			emitted_harvestable_radiation(src, 3, range = 5)
+			for(var/mob/living/L in range(2,src))
+				L.apply_radiation(rand(1,3),RAD_EXTERNAL)
+			last_event = world.time
+			active = null
+			return
+	return
+
+
+/obj/item/toy/plush/derpy/rads/attack_self(mob/user as mob)
+		squee()
+		to_chat(user, "You pet [src]. You feel the air around it heat up. You should probably not do that.")
+		radiatepone()
+		
+
+/obj/item/toy/plush/derpy/rads		//Currently only causes radiation on pet 
+	name = "unreleased derpy plush"
+	desc = "a plush of derpy. it appears to have glowing slightly. "
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "derpy_plush_rads"
+	item_state = "derpy_plush_rads"
+	throwforce = 3
+	w_class = W_CLASS_TINY
+	throw_speed = 3
+	throw_range = 15
+	attack_verb = list("boops")
+	hitsound = 'sound/misc/squee.ogg'
+	var/last_event = 0
+	var/active = null
+
+/obj/item/toy/plush/lyra
+	name = "lyra plush"
+	desc = "a plush of lyra. There appears to be a hole in it"
+	icon = 'icons/obj/toy.dmi'
+	icon_state = "lyra_plush"
+	item_state = "lyra_plush"
 	throwforce = 3
 	w_class = W_CLASS_TINY
 	throw_speed = 3

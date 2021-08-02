@@ -2579,6 +2579,7 @@ var/global/num_vending_terminals = 1
 		/obj/item/toy/plush/fluttershy = 3,
 		/obj/item/toy/plush/rarity = 3,
 		/obj/item/toy/plush/applejack = 3,
+		/obj/item/toy/plush/lyra = 3
 		) //Pretty much everything that had a chance to spawn.
 	contraband = list(
 		/obj/item/weapon/storage/box/smartbox/clothing_box/clownpsyche = AUTO_DROBE_DEFAULT_STOCK,
@@ -2587,7 +2588,8 @@ var/global/num_vending_terminals = 1
 		/obj/item/clothing/suit/judgerobe = 3,
 		/obj/item/clothing/head/powdered_wig = 3,
 		/obj/item/toy/gun = 3,
-		/obj/item/weapon/glue/temp_glue = 1
+		/obj/item/weapon/glue/temp_glue = 1,
+		/obj/item/toy/plush/derpy/rads = 2
 		)
 	premium = list(
 		/obj/item/weapon/storage/box/smartbox/clothing_box/chickensuitwhite = 1,
