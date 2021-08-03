@@ -34,7 +34,7 @@
 	item_state = "caparmor"
 	_color = "captain"
 	clothing_flags = ONESIZEFITSALL
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 
 /obj/item/clothing/under/rank/cargo
@@ -104,7 +104,7 @@
 	_color = "hydroponics"
 	permeability_coefficient = 0.50
 	clothing_flags = ONESIZEFITSALL
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/under/rank/botany
 	desc = "It's a jumpsuit designed to protect against minor plant-related hazards. For the more garden-minded botanist."

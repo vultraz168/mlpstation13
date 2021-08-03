@@ -57,7 +57,7 @@
 	has_sensor = 2
 	sensor_mode = 3
 	clothing_flags = ONESIZEFITSALL
-	species_fit = list(GREY_SHAPED,VOX_SHAPED, INSECT_SHAPED)
+	species_fit = list(GREY_SHAPED,VOX_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/under/color/pink
 	name = "pink jumpsuit"
