@@ -65,7 +65,7 @@
 	item_state = "robotics"
 	_color = "robotics"
 	clothing_flags = ONESIZEFITSALL
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/under/rank/mechatronic
 	desc = "It's a lilac-blue jumpsuit with a pink duffel jacket, all the rage for mechatronic engineers."
