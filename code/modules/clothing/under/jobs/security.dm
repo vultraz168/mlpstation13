@@ -104,7 +104,7 @@
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	clothing_flags = ONESIZEFITSALL
 	siemens_coefficient = 0.9
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/under/rank/security
 	name = "security officer's jumpsuit"
@@ -115,7 +115,7 @@
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	clothing_flags = ONESIZEFITSALL
 	siemens_coefficient = 0.9
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/under/rank/security/sneaksuit
 	name = "sneaking suit"
@@ -170,7 +170,7 @@
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	clothing_flags = ONESIZEFITSALL
 	siemens_coefficient = 0.9
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/under/det/noir
 	desc = "This suit's stayed with you for years, like an old friend. Sure, it's seen better days, but it ain't shabby; after all, you can afford a blemish on your character, but not on your clothes."
@@ -205,7 +205,7 @@
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	clothing_flags = ONESIZEFITSALL
 	siemens_coefficient = 0.8
-	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED)
+	species_fit = list(VOX_SHAPED, GREY_SHAPED, INSECT_SHAPED, PONY_SHAPED)
 
 /obj/item/clothing/suit/armor/hos
 	name = "armored coat"
